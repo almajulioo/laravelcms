@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite('resources/css/app.css')
     <title>Document</title>
 </head>
 <body>
-    <form action="{{route('article.store')}}" method="POST">@csrf 
-        <input type="text" name="title">
-        <input type="text" name="slug">
-        <input type="text" name="content">
-        <input type="text" name="user_id">
-        <input type="text" name="category_id">
-        <input type="submit">
+    <form class="p-5" action="{{route('article.store')}}" method="POST">@csrf 
+        <div>
+            <label for="title">Title</label>
+        </div>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-1/5" type="text" name="title">
+        <div>
+            <label for="slug">Slug</label>
+        </div>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-1/5" type="text" name="slug">
+        <div>
+             <label for="content">Content</label>
+            </div>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-1/5" type="text" name="content">
+        <div>
+            <label for="user_id">Id User</label>
+        </div>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-1/5" type="text" name="user_id">
+        <div>
+            <label for="category_id">Id Category</label>
+        </div>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-1/5" type="text" name="category_id">
+        <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"" type="submit">
     </form>
 </body>
 </html>
