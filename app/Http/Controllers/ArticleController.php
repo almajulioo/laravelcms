@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Role;
+use App\Models\Category;
 use App\Models\Article;
 
 class ArticleController extends Controller
@@ -25,14 +25,14 @@ class ArticleController extends Controller
             'title'=> $request->title,
             'slug'=> $request->slug,
             'content'=> $request->content,
-            'user_id'=> $request->user_id,
+            'user_id'=> auth()->user()->id,
             'category_id'=> $request->category_id
         ]);
-
-        return redirect('article');
+        return back()->with('success', 'Your article has been created!');
     }
 
     public function ArticleForm(){
-        return view('article.form');
+        $categories = Category::all();
+        return view('article.form')->with('categories', $categories);
     }
 }

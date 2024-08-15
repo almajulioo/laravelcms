@@ -20,4 +20,8 @@ class Article extends Model
         
     ];
     use HasFactory;
+    
+    public function category(){
+        $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }
