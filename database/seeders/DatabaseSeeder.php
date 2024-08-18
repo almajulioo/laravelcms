@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Category;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,10 +15,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Test User',
-            'email' => 'test@cms.com',
-            'password' => bcrypt("password")
+        User::insert([
+            [
+                'name' => 'admin',
+                'email' => 'admin@cms.com',
+                'password' => bcrypt("password"),
+                'role_id' => 1
+            ],
+            [
+                'name' => 'editor',
+                'email' => 'editor@cms.com',
+                'password' => bcrypt("password"),
+                'role_id' => 2
+            ],
+            [
+                'name' => 'visitor',
+                'email' => 'visitor@cms.com',
+                'password' => bcrypt("password"),
+                'role_id' => 3
+            ],
         ]);
 
         Category::insert([
@@ -28,6 +44,18 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Films',
                 'slug' => 'Films',
+            ],
+        ]);
+
+        Role::insert([
+            [
+                'role_name' => 'admin',
+            ],
+            [
+                'role_name' => 'editor',
+            ],
+            [
+                'role_name' => 'visitor',
             ],
         ]);
     }

@@ -8,6 +8,11 @@
     <title>Document</title>
 </head>
 <body>
+      @if(Session::has('success'))
+        <div class="py-2 px-3 mx-3 mt-2 rounded bg-green-300 w-fit">
+            <h1>{{ Session::get('success') }}</h1>
+        </div>
+      @endif
     <form class="p-5" action="{{route('article.store')}}" method="POST">@csrf 
         <div>
             <label for="title">Title</label>
