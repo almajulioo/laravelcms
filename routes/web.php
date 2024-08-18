@@ -17,7 +17,9 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('home');
     Route::middleware('checkRole:admin,editor')->group(function () {
-        Route::get('/article', [ArticleController::class, 'ArticleForm'])->name('article');
-        Route::post('/articlestore', [ArticleController::class, 'store'])->name('article.store');
+        Route::get('/article', [ArticleController::class, 'ArticleForm'])->name('article.store');
+        Route::post('/article', [ArticleController::class, 'store'])->name('article');
+        Route::get('/article/edit/{id}', [ArticleController::class, 'EditArticleForm'])->name('article.edit');
+        Route::post('/article/edit/{id}', [ArticleController::class, 'update']);
     });
 });
