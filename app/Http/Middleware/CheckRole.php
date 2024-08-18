@@ -19,9 +19,8 @@ class CheckRole
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-
         foreach ($roles as $role) {
-            if ($request->user()->role->role == $role) {
+            if ($request->user()->role->role_name == $role) {
                 return $next($request);
             }
         }

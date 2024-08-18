@@ -4,7 +4,6 @@ use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
-use App\Http\Middleware\CheckRole;
 
 
 
@@ -17,7 +16,7 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('home');
-    Route::middleware('CheckRole:admin')->group(function () {
+    Route::middleware('checkRole:admin,editor')->group(function () {
         Route::get('/article', [ArticleController::class, 'ArticleForm'])->name('article');
         Route::post('/articlestore', [ArticleController::class, 'store'])->name('article.store');
     });
