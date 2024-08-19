@@ -8,11 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="flex justify-between py-3 px-6">
-        <a href="{{route('logout')}}"><h3 class="text-sm font-bold bg-gray-300 p-1 w-fit rounded">Logout</h3></a>
-        @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2) 
+    <div class="flex flex-col justify-center items-center bg-black">
+        <h1 class="text-white text-center">Welcome to laravel cms <br> Hello {{ Auth::user()->name }} you are logged in as {{ Auth::user()->role->role_name }}</h1>
+        <div class="flex justify-between py-3 px-6  w-full">
+            <a href="{{route('logout')}}"><h3 class="text-sm font-bold bg-gray-300 p-1 w-fit rounded">Logout</h3></a>
+            @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2) 
             <a href="{{route('article.store')}}"><h3 class="text-sm font-bold bg-gray-300 p-1 w-fit rounded">Add Article</h3"></a>
-        @endif
+                @endif
+        </div>
     </div>
     <div class="px-6 flex py-4  flex-wrap gap-y-2">
         @foreach ($articles as $article)
