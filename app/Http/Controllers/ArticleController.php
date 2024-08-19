@@ -48,6 +48,12 @@ class ArticleController extends Controller
         ]);
         return back()->with('success', 'Your article has been updated!');
     }
+ 
+    public function delete($id){
+        $article = Article::find($id);
+        $article->delete();
+        return back()->with('success', 'Your article has been deleted!');
+    }
 
     public function ArticleForm(){
         $categories = Category::all();

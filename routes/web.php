@@ -21,5 +21,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/article', [ArticleController::class, 'store'])->name('article');
         Route::get('/article/edit/{id}', [ArticleController::class, 'EditArticleForm'])->name('article.edit');
         Route::post('/article/edit/{id}', [ArticleController::class, 'update']);
+        Route::get('/article/delete/{id}', [ArticleController::class, 'delete'])->name('article.delete');
     });
 });

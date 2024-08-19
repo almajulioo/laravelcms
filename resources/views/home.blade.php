@@ -20,7 +20,10 @@
                 <div class="flex justify-between">
                     <h3 class="text-sm font-bold bg-gray-300 p-1 w-fit rounded">{{$article->slug}}</h3>
                     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2) 
+                    <div class="flex gap-2">
                         <a href="{{route('article.edit', ['id' => $article->id])}}"><h3 class="text-sm font-bold bg-gray-300 p-1 w-fit rounded">Edit</h3></a>
+                        <a onclick="return confirm('Are you sure?')" href="{{route('article.delete', ['id' => $article->id])}}"><h3 class="text-sm font-bold bg-gray-300 p-1 w-fit rounded">Delete</h3></a>
+                    </div>
                     @endif
                 </div>
                 <h1 class="font-bold text-2xl mt-1">{{$article->title}}</h1>
