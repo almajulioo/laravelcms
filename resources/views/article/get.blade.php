@@ -51,5 +51,22 @@
             <input  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="comment">
         </form>
     </div>
+
+    <div class="flex flex-wrap">
+        @foreach($comments as $comment)
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-4 w-1/2">
+            <div class="flex items-center mb-4">
+                <div>
+                    <h3 class="text-lg font-semibold">{{$comment->user->name}}</h3>
+                    <p class="text-sm text-gray-600">{{ $comment->created_at->diffForHumans() }}</p>
+                </div>
+            </div>
+            <p class="text-gray-800 mb-4">
+                {{$comment->content}}
+            </p>
+        </div>
+        @endforeach
+    </div>
+
 </body>
 </html>

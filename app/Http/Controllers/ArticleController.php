@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Article;
@@ -14,7 +15,8 @@ class ArticleController extends Controller
     }
     public function getArticleById($id){
         $article = Article::find($id);
-        return view('article.get')->with('article', $article);
+        $comments = Comment::where('article_id', $id)->get();
+        return view('article.get')->with(['article'=> $article, 'comments'=>$comments]);
     }
 
     public function store(Request $request){
