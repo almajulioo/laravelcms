@@ -16,6 +16,7 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('home');
+    Route::get('/article/{id}', [ArticleController::class, 'getArticleById'])->name('article.get');
     Route::middleware('checkRole:admin,editor')->group(function () {
         Route::get('/article', [ArticleController::class, 'ArticleForm'])->name('article.store');
         Route::post('/article', [ArticleController::class, 'store'])->name('article');

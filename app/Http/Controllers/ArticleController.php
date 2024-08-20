@@ -12,6 +12,10 @@ class ArticleController extends Controller
         $articles = Article::all();
         return view('home')->with('articles', $articles);
     }
+    public function getArticleById($id){
+        $article = Article::find($id);
+        return view('article.get')->with('article', $article);
+    }
 
     public function store(Request $request){
 
