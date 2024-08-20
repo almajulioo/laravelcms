@@ -38,5 +38,18 @@
             </div>
         @endif
     </div>
+     @if(session()->has('success'))
+        <div class="ml-6 text-black bg-green-300 p-2 rounded w-fit">{{session()->get('success')}}Your comment has been created!</div>
+     @endif
+    <div class="px-6 py-4 ">
+        <form method="POST" action="{{route('article.comment', ['id' => $article->id])}}">
+            @csrf
+            <div>
+                <label for="content">Comment</label>
+            </div>
+            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-1/5" type="text" name="content">
+            <input  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="comment">
+        </form>
+    </div>
 </body>
 </html>
