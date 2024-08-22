@@ -18,16 +18,19 @@ Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('home');
     Route::get('/article/{id}', [ArticleController::class, 'getArticleById'])->name('article.get');
-    Route::post('/article/{id}/comment', [CommentController::class, 'store'])->name('article.comment');
-    Route::middleware('checkRole:admin,editor')->group(function () {
-        Route::get('/article', [ArticleController::class, 'ArticleForm'])->name('article.store');
-        Route::post('/article', [ArticleController::class, 'store'])->name('article');
-        Route::get('/article/edit/{id}', [ArticleController::class, 'EditArticleForm'])->name('article.edit');
-        Route::post('/article/edit/{id}', [ArticleController::class, 'update']);
-        Route::get('/article/delete/{id}', [ArticleController::class, 'delete'])->name('article.delete');
+    Route::prefix('article')->group(function () {
+        Route::post('{id}/comment', [CommentController::class, 'store'])->name('article.comment');
+        Route::middleware('checkRole:admin,editor')->group(function () {
+            Route::get('', [ArticleController::class, 'ArticleForm'])->name('article.store');
+            Route::post('', [ArticleController::class, 'store'])->name('article');
+            Route::get('edit/{id}', [ArticleController::class, 'EditArticleForm'])->name('article.edit');
+            Route::post('edit/{id}', [ArticleController::class, 'update']);
+            Route::get('delete/{id}', [ArticleController::class, 'delete'])->name('article.delete');
+        });
     });
 
     Route::middleware('checkRole:admin')->group(function () {
+        Route::get('/dashboard/atur/{role}', [UserController::class, 'getUsersRole'])->name('dashboard.aturrole');
         Route::get('/dashboard/atur/{role}', [UserController::class, 'getUsersRole'])->name('dashboard.aturrole');
     });
 });

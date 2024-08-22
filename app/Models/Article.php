@@ -19,6 +19,15 @@ class Article extends Model
     protected $hidden = [
         
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($article) {
+            $article->comments()->delete();
+        });
+    }
     use HasFactory;
     
     public function category(){
@@ -27,5 +36,10 @@ class Article extends Model
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

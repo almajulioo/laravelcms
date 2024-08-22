@@ -56,7 +56,7 @@ class ArticleController extends Controller
     }
  
     public function delete($id){
-        $article = Article::find($id);
+        $article = Article::findOrFail($id);
         $article->delete();
         return back()->with('success', 'Your article has been deleted!');
     }
