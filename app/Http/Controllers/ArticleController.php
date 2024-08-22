@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Article;
@@ -63,7 +64,8 @@ class ArticleController extends Controller
 
     public function ArticleForm(){
         $categories = Category::all();
-        return view('article.form')->with('categories', $categories);
+        $role = Role::all();
+        return view('article.form')->with(['categories'=> $categories, 'roles' => $role]);
     }
     public function EditArticleForm($id){
         $categories = Category::all();
