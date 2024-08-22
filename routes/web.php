@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('checkRole:admin')->group(function () {
         Route::get('/dashboard/atur/{role}', [UserController::class, 'getUsersRole'])->name('dashboard.aturrole');
-        Route::get('/dashboard/atur/{role}', [UserController::class, 'getUsersRole'])->name('dashboard.aturrole');
+        Route::get('/dashboard/tambah-user', [UserController::class, 'tambahUserForm'])->name('dashboard.tambahuser');
+        Route::post('/dashboard/tambah-user', [UserController::class, 'store']);
     });
 });
