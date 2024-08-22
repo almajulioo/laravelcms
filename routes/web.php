@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
@@ -25,5 +25,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/article/edit/{id}', [ArticleController::class, 'EditArticleForm'])->name('article.edit');
         Route::post('/article/edit/{id}', [ArticleController::class, 'update']);
         Route::get('/article/delete/{id}', [ArticleController::class, 'delete'])->name('article.delete');
+    });
+
+    Route::middleware('checkRole:admin')->group(function () {
+        Route::get('/dashboard/atur/{role}', [UserController::class, 'getUsersRole'])->name('dashboard.aturrole');
     });
 });
